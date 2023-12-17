@@ -26,11 +26,14 @@ export default function Count(props: CountProps) {
 
   return (
     <div class="my-2">
-      <div>
+      <a
+        href={`https://www.seek.co.nz/${props.searchTerm}-jobs`}
+        target="_blank"
+      >
         {props.searchTerm}: {count.value === ""
           ? <img class=" inline" src="/3-dots-bounce.svg" alt="loading..." />
           : count.value || 0}
-      </div>
+      </a>
     </div>
   );
 }
