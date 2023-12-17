@@ -1,19 +1,17 @@
 import { useSignal } from "@preact/signals";
+import Search from "../types/Search.ts";
 
 interface CountProps {
-  searchTerm: string;
+  searchTerm: Search;
 }
-
-// Create a cache object to store the search results
-const cache: { [searchTerm: string]: number } = {};
 
 export default function Count(props: CountProps) {
   const count = useSignal("");
 
-  async function getCount(search: string) {
+  async function getCount(searchTerm: string, location: string) {
     try {
       const response = await fetch(
-        `/api/v1/scrape/${search}`,
+        `/api/v1/scrape/${searchTerm}/${location}`,
       );
       const result = await response.json();
       count.value = result.count;
@@ -22,15 +20,19 @@ export default function Count(props: CountProps) {
     }
   }
 
-  getCount(props.searchTerm);
+  getCount(props.searchTerm.searchTerm, props.searchTerm.location);
 
   return (
     <div class="my-2">
       <a
-        href={`https://www.seek.co.nz/${props.searchTerm}-jobs`}
+        href={`https://www.seek.co.nz/${props.searchTerm.searchTerm}-jobs/in-${props.searchTerm.location}`}
         target="_blank"
       >
-        {props.searchTerm}: {count.value === ""
+        {props.searchTerm.searchTerm} jobs
+        {props.searchTerm.location
+          ? ` in ${props.searchTerm.location}: `
+          : ` in NZ: `}
+        {count.value === ""
           ? <img class=" inline" src="/3-dots-bounce.svg" alt="loading..." />
           : count.value || 0}
       </a>
