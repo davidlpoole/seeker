@@ -22,10 +22,18 @@ export default function Count(props: CountProps) {
 
   getCount(props.searchTerm.searchTerm, props.searchTerm.location);
 
+  let url = `https://www.seek.co.nz/${
+    props.searchTerm.searchTerm.replace(" ", "-")
+  }-jobs/`;
+
+  props.searchTerm.location ? url += `in-${props.searchTerm.location}` : null;
+
+  console.log(url);
+
   return (
     <div class="my-2">
       <a
-        href={`https://www.seek.co.nz/${props.searchTerm.searchTerm}-jobs/in-${props.searchTerm.location}`}
+        href={url}
         target="_blank"
       >
         {props.searchTerm.searchTerm} jobs
@@ -33,7 +41,7 @@ export default function Count(props: CountProps) {
           ? ` in ${props.searchTerm.location}: `
           : ` in NZ: `}
         {count.value === ""
-          ? <img class=" inline" src="/3-dots-bounce.svg" alt="loading..." />
+          ? <img class="inline" src="/3-dots-bounce.svg" alt="loading..." />
           : count.value || 0}
       </a>
     </div>
