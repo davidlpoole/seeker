@@ -8,7 +8,7 @@ interface CountProps {
 const cache: { [searchTerm: string]: number } = {};
 
 export default function Count(props: CountProps) {
-  const count = useSignal(0);
+  const count = useSignal("");
 
   async function getCount(search: string) {
     try {
@@ -27,9 +27,9 @@ export default function Count(props: CountProps) {
   return (
     <div class="my-2">
       <div>
-        {props.searchTerm}: {count.value === 0
+        {props.searchTerm}: {count.value === ""
           ? <img class=" inline" src="/3-dots-bounce.svg" alt="loading..." />
-          : count.value}
+          : count.value || 0}
       </div>
     </div>
   );

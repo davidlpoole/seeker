@@ -12,8 +12,8 @@ export default function App() {
 
   return (
     <>
-      <h1 class="text-4xl font-bold pb-4">The Seeker</h1>
-      <p>
+      <h1 class="text-4xl font-bold pb-4 text-white">The Seeker</h1>
+      <p class="text-white mb-2">
         Find out how many jobs are available on Seek NZ for a specific term.
       </p>
       <AddToList addTerm={addTerm} />
