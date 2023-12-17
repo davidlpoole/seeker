@@ -31,8 +31,9 @@ export default function Count(props: CountProps) {
 
   getCount(safeSearchTerm, safeLocation, dateRange);
 
-  let url = `https://www.seek.co.nz/${safeSearchTerm}-jobs/`;
-  safeLocation ? url += `in-${safeLocation}` : null;
+  let url = `https://www.seek.co.nz/${safeSearchTerm}-jobs`;
+  safeLocation ? url += `/in-${safeLocation}` : null;
+  dateRange ? url += `?dateRange=${dateRange}` : null;
 
   const options: Record<number, string> = {
     1: "24 hours",
