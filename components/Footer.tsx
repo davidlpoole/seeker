@@ -38,6 +38,9 @@ export default function Footer() {
           />
           View code on GitHub
         </LinkButton>
+        <div class="text-xs italic mt-2">
+          This tool is not connected with, or approved by SEEK Limited.
+        </div>
       </div>
     </div>
   );
