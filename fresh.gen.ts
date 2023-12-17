@@ -6,7 +6,10 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_v1_scrape_searchTerm_ from "./routes/api/v1/scrape/[searchTerm].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $AddToList from "./islands/AddToList.tsx";
+import * as $App from "./islands/App.tsx";
 import * as $Count from "./islands/Count.tsx";
+import * as $CountList from "./islands/CountList.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -17,7 +20,10 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
+    "./islands/AddToList.tsx": $AddToList,
+    "./islands/App.tsx": $App,
     "./islands/Count.tsx": $Count,
+    "./islands/CountList.tsx": $CountList,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

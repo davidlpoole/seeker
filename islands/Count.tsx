@@ -4,13 +4,16 @@ interface CountProps {
   searchTerm: string;
 }
 
+// Create a cache object to store the search results
+const cache: { [searchTerm: string]: number } = {};
+
 export default function Count(props: CountProps) {
-  const count = useSignal("Loading...");
+  const count = useSignal(0);
 
   async function getCount(search: string) {
     try {
       const response = await fetch(
-        `/api/v1/scrape/${search}`,
+        `http://localhost:8000/api/v1/scrape/${search}`,
       );
       const result = await response.json();
       count.value = result.count;
@@ -24,7 +27,9 @@ export default function Count(props: CountProps) {
   return (
     <div class="my-2">
       <div>
-        {props.searchTerm}: {count}
+        {props.searchTerm}: {count.value === 0
+          ? <img class=" inline" src="/3-dots-bounce.svg" alt="loading..." />
+          : count.value}
       </div>
     </div>
   );
