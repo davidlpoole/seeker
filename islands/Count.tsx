@@ -13,7 +13,7 @@ export default function Count(props: CountProps) {
   async function getCount(search: string) {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/scrape/${search}`,
+        `/api/v1/scrape/${search}`,
       );
       const result = await response.json();
       count.value = result.count;
