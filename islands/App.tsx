@@ -2,22 +2,24 @@ import { useState } from "preact/hooks";
 
 import AddToList from "../islands/AddToList.tsx";
 import CountList from "../islands/CountList.tsx";
+import Search from "../types/Search.ts";
 
 export default function App() {
-  const [searchTerms, setSearchTerms] = useState([] as string[]);
+  const [searchList, setSearchList] = useState([] as Search[]);
 
-  function addTerm(newVal: string) {
-    setSearchTerms([...searchTerms, newVal]);
+  function addTerm(newSearch: Search) {
+    setSearchList([...searchList, newSearch]);
   }
 
   return (
     <>
       <h1 class="text-4xl font-bold pb-4 text-white">The Seeker</h1>
       <p class="text-white mb-2">
-        Find out how many jobs are available on Seek NZ for a specific term.
+        Find out how many jobs are available on Seek NZ for a specific search
+        term and location (optional).
       </p>
       <AddToList addTerm={addTerm} />
-      <CountList searchTerms={searchTerms} />
+      <CountList searchList={searchList} />
     </>
   );
 }

@@ -1,9 +1,14 @@
+import Search from "../types/Search.ts";
 import Count from "./Count.tsx";
 
-export default function CountList(props) {
+interface Props {
+  searchList: Search[];
+}
+
+export default function CountList(props: Props) {
   return (
     <div class="text-white text-center">
-      {props.searchTerms.map((s) => <Count searchTerm={s} />)}
+      {props.searchList.map((s) => <Count searchTerm={s} />)}
     </div>
   );
 }
