@@ -34,8 +34,7 @@ export default function App() {
     <>
       <h1 class="text-4xl font-bold pb-4 text-white">The Seeker</h1>
       <p class="text-white mb-2">
-        Find out how many jobs are available on Seek for a specific search term
-        and location (optional).
+        Compare jobs on Seek by search term, location, or date range.
       </p>
       <AddToList addTerm={addTerm} />
       <CountList searchList={searchList} />
