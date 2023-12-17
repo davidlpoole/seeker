@@ -19,16 +19,13 @@ export default function Count(props: CountProps) {
       console.error("Error:", error);
     }
   }
+  const safeSearchTerm = encodeURIComponent(props.searchTerm.searchTerm);
+  const safeLocation = encodeURIComponent(props.searchTerm.location);
 
-  getCount(props.searchTerm.searchTerm, props.searchTerm.location);
+  getCount(safeSearchTerm, safeLocation);
 
-  let url = `https://www.seek.co.nz/${
-    props.searchTerm.searchTerm.replace(" ", "-")
-  }-jobs/`;
-
-  props.searchTerm.location ? url += `in-${props.searchTerm.location}` : null;
-
-  console.log(url);
+  let url = `https://www.seek.co.nz/${safeSearchTerm}-jobs/`;
+  safeLocation ? url += `in-${safeLocation}` : null;
 
   return (
     <div class="my-2">
