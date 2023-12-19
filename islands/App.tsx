@@ -9,10 +9,13 @@ export default function App() {
   const [searchList, setSearchList] = useState([] as Search[]);
 
   useEffect(() => {
-    const getSeekerList = localStorage.getItem("seekerList");
+    const getSeekerList = localStorage.getItem("seekerListV2");
     if (getSeekerList) {
       setSearchList(JSON.parse(getSeekerList));
     }
+
+    // Clean up any old versions
+    localStorage.removeItem("seekerList");
   }, []);
 
   function addTerm(newSearch: Search) {
@@ -20,14 +23,14 @@ export default function App() {
 
     setSearchList(newList);
     localStorage.setItem(
-      "seekerList",
+      "seekerListV2",
       JSON.stringify(newList),
     );
   }
 
   function clearList() {
     setSearchList([]);
-    localStorage.removeItem("seekerList");
+    localStorage.removeItem("seekerListV2");
   }
 
   return (

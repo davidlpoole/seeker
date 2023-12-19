@@ -1,5 +1,5 @@
 export default interface Search {
-  searchTerm: string;
-  location: string;
+  keywords: string;
+  where: string;
   dateRange: number;
 }
