@@ -1,8 +1,8 @@
 import LinkButton from "./LinkButton.tsx";
 export default function Footer() {
   return (
-    <div class="px-4 py-8 mx-auto">
-      <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center pb-6 gap-2">
+    <div class="pt-8 mx-auto max-w-screen-md flex flex-col items-center justify-center">
+      <div>
         <LinkButton
           href="https://davidpoole.deno.dev"
           target="_blank"
@@ -36,11 +36,11 @@ export default function Footer() {
             height="20"
             alt="the GitHub logo: OctoCat"
           />
-          View code on GitHub
+          View on GitHub
         </LinkButton>
-        <div class="text-xs italic mt-2">
-          This tool is not connected with, or approved by SEEK Limited.
-        </div>
+      </div>
+      <div class="text-xs italic mt-2">
+        This tool is not connected with, or approved by SEEK Limited.
       </div>
     </div>
   );

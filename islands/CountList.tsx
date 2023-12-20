@@ -7,7 +7,7 @@ interface Props {
 
 export default function CountList(props: Props) {
   return (
-    <div>
+    <div class="pb-2">
       {props.searchList.map((s) => <Count searchTerm={s} />)}
     </div>
   );
