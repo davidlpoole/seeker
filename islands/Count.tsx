@@ -6,19 +6,20 @@ interface CountProps {
 }
 
 export default function Count(props: CountProps) {
-  const safeSearchTerm = encodeURIComponent(props.searchTerm.searchTerm);
-  const safeLocation = encodeURIComponent(props.searchTerm.location);
-  const dateRange = Number(props.searchTerm.dateRange) || 7;
+  const safeKeywords = encodeURIComponent(props.searchTerm.keywords);
+  const safeWhere = encodeURIComponent(props.searchTerm.where);
+  const safeDateRange = Number(encodeURIComponent(props.searchTerm.dateRange));
+
   const count = useSignal("");
 
   async function getCount(
-    searchTerm: string,
-    location = "All-New-Zealand",
-    dateRange = 7,
+    keywords: string,
+    where: string,
+    dateRange: number,
   ) {
     try {
       const url =
-        `/api/v1/scrape/${searchTerm}/${location}?dateRange=${dateRange}`;
+        `/api/v2/scrape?keywords=${keywords}&where=${where}&daterange=${dateRange}`;
       const response = await fetch(
         url,
       );
@@ -29,11 +30,10 @@ export default function Count(props: CountProps) {
     }
   }
 
-  getCount(safeSearchTerm, safeLocation, dateRange);
+  getCount(safeKeywords, safeWhere, safeDateRange);
 
-  let url = `https://www.seek.co.nz/${safeSearchTerm}-jobs`;
-  safeLocation ? url += `/in-${safeLocation}` : null;
-  dateRange ? url += `?dateRange=${dateRange}` : null;
+  const url =
+    `https://www.seek.co.nz/jobs?keywords=${safeKeywords}&where=${safeWhere}&daterange=${safeDateRange}`;
 
   const options: Record<number, string> = {
     1: "24 hours",
@@ -49,10 +49,8 @@ export default function Count(props: CountProps) {
         href={url}
         target="_blank"
       >
-        {props.searchTerm.searchTerm} jobs
-        {props.searchTerm.location
-          ? ` in ${props.searchTerm.location} `
-          : ` in NZ `}
+        {props.searchTerm.keywords} jobs
+        {props.searchTerm.where ? ` in ${props.searchTerm.where} ` : ` in NZ `}
         {`posted in the last ${options[props.searchTerm.dateRange]}: `}
         {count.value === ""
           ? <img class="inline" src="/3-dots-bounce.svg" alt="loading..." />

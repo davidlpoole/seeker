@@ -8,10 +8,10 @@ interface Props {
 export default function AddToList(props: Props) {
   function handleAdd(e) {
     e.preventDefault();
-    const searchTerm = e.target.searchTerm.value;
-    const location = e.target.location.value;
+    const keywords = e.target.keywords.value;
+    const where = e.target.where.value;
     const dateRange = e.target.dateRange.value;
-    const searchObject = { searchTerm, location, dateRange };
+    const searchObject = { keywords, where, dateRange };
     props.addTerm(searchObject);
   }
 
@@ -20,23 +20,23 @@ export default function AddToList(props: Props) {
       <input
         className="px-2 py-1 mr-2 w-48 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
         type="text"
-        name="searchTerm"
+        name="keywords"
         required
         placeholder={"Software Developer"}
       />
       <input
         className="px-2 py-1 mr-2 w-48 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
         type="text"
-        name="location"
+        name="where"
         placeholder={"All New Zealand"}
       />
       <select
         name="dateRange"
         class="px-2 py-1 mr-2 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
       >
-        <option value="1">In the last 24 hours</option>
+        <option value="1" selected>In the last 24 hours</option>
         <option value="3">In the last 3 days</option>
-        <option value="7" selected>In the last 7 days</option>
+        <option value="7">In the last 7 days</option>
         <option value="14">In the last 2 weeks</option>
         <option value="30">In the last month</option>
       </select>
