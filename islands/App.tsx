@@ -8,30 +8,36 @@ import Footer from "../components/Footer.tsx";
 
 export default function App() {
   const [searchList, setSearchList] = useState([] as Search[]);
+  const LOCAL_STORAGE_KEY = "seekerListV3";
 
   useEffect(() => {
-    const getSeekerList = localStorage.getItem("seekerListV2");
+    const getSeekerList = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (getSeekerList) {
       setSearchList(JSON.parse(getSeekerList));
     }
-
-    // Clean up any old versions
-    localStorage.removeItem("seekerList");
   }, []);
 
   function addTerm(newSearch: Search) {
     const newList = [...searchList, newSearch];
-
     setSearchList(newList);
     localStorage.setItem(
-      "seekerListV2",
+      LOCAL_STORAGE_KEY,
+      JSON.stringify(newList),
+    );
+  }
+
+  function removeFromList(id: Search["id"]) {
+    const newList = searchList.filter((search) => search.id !== id);
+    setSearchList(newList);
+    localStorage.setItem(
+      LOCAL_STORAGE_KEY,
       JSON.stringify(newList),
     );
   }
 
   function clearList() {
     setSearchList([]);
-    localStorage.removeItem("seekerListV2");
+    localStorage.clear();
   }
 
   return (
@@ -59,8 +65,8 @@ export default function App() {
                   </p>
                 </>
               )}
-              <CountList searchList={searchList} />
-              {searchList.length > 0 && (
+              <CountList searchList={searchList} removeItem={removeFromList} />
+              {searchList.length > 1 && (
                 <Button onClick={clearList}>Clear list</Button>
               )}
             </div>
