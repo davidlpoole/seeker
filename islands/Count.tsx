@@ -1,8 +1,10 @@
 import { useSignal } from "@preact/signals";
 import Search from "../types/Search.ts";
+import { Button } from "../components/Button.tsx";
 
 interface CountProps {
   searchTerm: Search;
+  removeItem: (id: Search["id"]) => void;
 }
 
 export default function Count(props: CountProps) {
@@ -44,21 +46,28 @@ export default function Count(props: CountProps) {
   };
 
   return (
-    <div class="my-2">
-      <a
-        href={url}
-        target="_blank"
-      >
-        {props.searchTerm.keywords}
-        {" jobs in "}
-        {props.searchTerm.where}
-        {" in the last "}
-        {options[props.searchTerm.dateRange]}
-        {": "}
-        {count.value === ""
-          ? <img class="inline" src="/3-dots-bounce.svg" alt="loading..." />
-          : count.value || 0}
-      </a>
+    <div class="flex gap-4 my-2 justify-between items-center">
+      <div>
+        <a
+          href={url}
+          target="_blank"
+        >
+          {props.searchTerm.keywords}
+          {" jobs in "}
+          {props.searchTerm.where}
+          {" in the last "}
+          {options[props.searchTerm.dateRange]}
+          {": "}
+          {count.value === ""
+            ? <img class="inline" src="/3-dots-bounce.svg" alt="loading..." />
+            : <span class="font-semibold">{count.value || 0}</span>}
+        </a>
+      </div>
+      <div>
+        <Button onClick={() => props.removeItem(props.searchTerm.id)}>
+          delete
+        </Button>
+      </div>
     </div>
   );
 }

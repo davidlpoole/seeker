@@ -1,3 +1,4 @@
+import { h } from "preact";
 import { Button } from "../components/Button.tsx";
 import Search from "../types/Search.ts";
 
@@ -6,12 +7,13 @@ interface Props {
 }
 
 export default function AddToList(props: Props) {
-  function handleAdd(e) {
+  function handleAdd(e: h.JSX.TargetedEvent<HTMLFormElement>) {
     e.preventDefault();
-    const keywords = e.target.keywords.value;
-    const where = e.target.where.value;
-    const dateRange = e.target.dateRange.value;
-    const searchObject = { keywords, where, dateRange };
+    const keywords = (e.target as HTMLFormElement)?.keywords.value;
+    const where = (e.target as HTMLFormElement)?.where.value || "New Zealand";
+    const dateRange = (e.target as HTMLFormElement)?.dateRange.value;
+    const id = crypto.randomUUID();
+    const searchObject = { id, keywords, where, dateRange };
     props.addTerm(searchObject);
   }
 
@@ -55,7 +57,7 @@ export default function AddToList(props: Props) {
           <option value="30">In the last month</option>
         </select>
       </div>
-      <div class="mt-2 grid">
+      <div class="mt-3 grid">
         <Button>Search</Button>
       </div>
     </form>
