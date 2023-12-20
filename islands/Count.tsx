@@ -46,24 +46,28 @@ export default function Count(props: CountProps) {
   };
 
   return (
-    <div class="my-2">
-      <a
-        href={url}
-        target="_blank"
-      >
-        {props.searchTerm.keywords}
-        {" jobs in "}
-        {props.searchTerm.where}
-        {" in the last "}
-        {options[props.searchTerm.dateRange]}
-        {": "}
-        {count.value === ""
-          ? <img class="inline" src="/3-dots-bounce.svg" alt="loading..." />
-          : <span class="font-semibold">{count.value || 0}</span>}
-      </a>{" "}
-      <Button onClick={() => props.removeItem(props.searchTerm.id)}>
-        delete
-      </Button>
+    <div class="flex gap-4 my-2 justify-between items-center">
+      <div>
+        <a
+          href={url}
+          target="_blank"
+        >
+          {props.searchTerm.keywords}
+          {" jobs in "}
+          {props.searchTerm.where}
+          {" in the last "}
+          {options[props.searchTerm.dateRange]}
+          {": "}
+          {count.value === ""
+            ? <img class="inline" src="/3-dots-bounce.svg" alt="loading..." />
+            : <span class="font-semibold">{count.value || 0}</span>}
+        </a>
+      </div>
+      <div>
+        <Button onClick={() => props.removeItem(props.searchTerm.id)}>
+          delete
+        </Button>
+      </div>
     </div>
   );
 }
