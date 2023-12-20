@@ -49,9 +49,12 @@ export default function Count(props: CountProps) {
         href={url}
         target="_blank"
       >
-        {props.searchTerm.keywords} jobs
-        {props.searchTerm.where ? ` in ${props.searchTerm.where} ` : ` in NZ `}
-        {`posted in the last ${options[props.searchTerm.dateRange]}: `}
+        {props.searchTerm.keywords}
+        {" jobs in "}
+        {props.searchTerm.where}
+        {" in the last "}
+        {options[props.searchTerm.dateRange]}
+        {": "}
         {count.value === ""
           ? <img class="inline" src="/3-dots-bounce.svg" alt="loading..." />
           : count.value || 0}
