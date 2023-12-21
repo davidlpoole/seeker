@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { Button } from "../components/Button.tsx";
-import Search from "../types/Search.ts";
+import { Search } from "../types/Search.ts";
 
 interface Props {
   addTerm: (newSearch: Search) => void;
@@ -9,11 +9,15 @@ interface Props {
 export default function AddToList(props: Props) {
   function handleAdd(e: h.JSX.TargetedEvent<HTMLFormElement>) {
     e.preventDefault();
-    const keywords = (e.target as HTMLFormElement)?.keywords.value;
-    const where = (e.target as HTMLFormElement)?.where.value || "New Zealand";
-    const dateRange = (e.target as HTMLFormElement)?.dateRange.value;
     const id = crypto.randomUUID();
-    const searchObject = { id, keywords, where, dateRange };
+    const keywords = (e.target as HTMLFormElement)?.keywords.value;
+    const where = (e.target as HTMLFormElement)?.where?.value || "New Zealand";
+    const dateRange = (e.target as HTMLFormElement)?.dateRange.value;
+    const salaryMin = (e.target as HTMLFormElement)?.salaryMin?.value || "0";
+    const salaryMax = (e.target as HTMLFormElement)?.salaryMax?.value || "";
+    const salaryRange = `${salaryMin}-${salaryMax}`;
+
+    const searchObject = { id, keywords, where, dateRange, salaryRange };
     props.addTerm(searchObject);
   }
 
@@ -56,6 +60,30 @@ export default function AddToList(props: Props) {
           <option value="14">In the last 2 weeks</option>
           <option value="30">In the last month</option>
         </select>
+      </div>
+
+      <div class="grid">
+        <label>
+          Salary from
+        </label>
+        <input
+          className="px-2 py-1 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
+          type="number"
+          name="salaryMin"
+          placeholder="any"
+        />
+      </div>
+
+      <div class="grid">
+        <label>
+          Salary to
+        </label>
+        <input
+          className="px-2 py-1 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
+          type="number"
+          name="salaryMax"
+          placeholder="any"
+        />
       </div>
       <div class="mt-3 grid">
         <Button>Search</Button>
