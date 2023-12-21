@@ -11,7 +11,6 @@ import * as $index from "./routes/index.tsx";
 import * as $AddToList from "./islands/AddToList.tsx";
 import * as $App from "./islands/App.tsx";
 import * as $Count from "./islands/Count.tsx";
-import * as $CountList from "./islands/CountList.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -29,7 +28,6 @@ const manifest = {
     "./islands/AddToList.tsx": $AddToList,
     "./islands/App.tsx": $App,
     "./islands/Count.tsx": $Count,
-    "./islands/CountList.tsx": $CountList,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

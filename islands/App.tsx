@@ -1,10 +1,10 @@
 import { useEffect, useState } from "preact/hooks";
 
 import AddToList from "../islands/AddToList.tsx";
-import CountList from "../islands/CountList.tsx";
 import Search from "../types/Search.ts";
 import { Button } from "../components/Button.tsx";
 import Footer from "../components/Footer.tsx";
+import Count from "./Count.tsx";
 
 export default function App() {
   const [searchList, setSearchList] = useState([] as Search[]);
@@ -43,14 +43,14 @@ export default function App() {
   return (
     <div class="">
       <div class="sm:flex sm:flex-row h-screen">
-        <aside class="
+        <div class="
         bg-[#E70279] text-white flex-shrink-0
-        z-30 sticky top-0 w-full overflow-y-scroll p-5
+        z-30 w-full overflow-y-scroll p-5
         sm:h-full sm:overflow-auto sm:w-fit
         ">
-          <h1 class="text-4xl font-bold pb-4">The Seeker</h1>
+          <h1 class="text-4xl font-bold pb-4 sticky top-0">The Seeker</h1>
           <AddToList addTerm={addTerm} />
-        </aside>
+        </div>
 
         <div class="flex flex-row justify-center w-full text-center">
           <div class="flex flex-col justify-between w-fit p-5">
@@ -65,7 +65,15 @@ export default function App() {
                   </p>
                 </>
               )}
-              <CountList searchList={searchList} removeItem={removeFromList} />
+              <div class="pb-2">
+                {searchList.map((s) => (
+                  <Count
+                    key={s.id}
+                    searchTerm={s}
+                    removeItem={removeFromList}
+                  />
+                ))}
+              </div>
               {searchList.length > 1 && (
                 <Button onClick={clearList}>Clear list</Button>
               )}
