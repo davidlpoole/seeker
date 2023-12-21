@@ -1,14 +1,14 @@
 import { useEffect, useState } from "preact/hooks";
 
 import AddToList from "../islands/AddToList.tsx";
-import Search from "../types/Search.ts";
+import { Search } from "../types/Search.ts";
 import { Button } from "../components/Button.tsx";
 import Footer from "../components/Footer.tsx";
 import Count from "./Count.tsx";
 
 export default function App() {
   const [searchList, setSearchList] = useState([] as Search[]);
-  const LOCAL_STORAGE_KEY = "seekerListV3";
+  const LOCAL_STORAGE_KEY = "seekerListV4";
 
   useEffect(() => {
     const getSeekerList = localStorage.getItem(LOCAL_STORAGE_KEY);

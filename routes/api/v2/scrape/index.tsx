@@ -9,7 +9,9 @@ export const handler: Handlers = {
     const where = url.searchParams.get("where") ||
       "All New Zealand";
     const dateRange = Number(url.searchParams.get("daterange")) || 1;
-    const count = await scrape({ keywords, where, dateRange });
+    const salaryRange = url.searchParams.get("salaryrange") || "0-";
+
+    const count = await scrape({ keywords, where, dateRange, salaryRange });
     return new Response(JSON.stringify({ count }));
   },
 };
