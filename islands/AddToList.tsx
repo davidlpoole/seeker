@@ -1,6 +1,8 @@
 import { h } from "preact";
 import { Button } from "../components/Button.tsx";
 import { Search } from "../types/Search.ts";
+import FormTextInput from "../components/FormTextInput.tsx";
+import FormSelectInput from "../components/FormSelectInput.tsx";
 
 interface Props {
   addTerm: (newSearch: Search) => void;
@@ -23,68 +25,43 @@ export default function AddToList(props: Props) {
 
   return (
     <form onSubmit={(e) => handleAdd(e)} class="grid gap-2">
-      <div class="grid">
-        <label>
-          Keywords
-        </label>
-        <input
-          className="px-2 py-1 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
-          type="text"
-          name="keywords"
-          required
-          placeholder={"Software Developer"}
-        />
-      </div>
-      <div class="grid">
-        <label>
-          Location
-        </label>
-        <input
-          className="px-2 py-1 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
-          type="text"
-          name="where"
-          placeholder={"All New Zealand"}
-        />
-      </div>
-      <div class="grid">
-        <label>
-          Date listed
-        </label>
-        <select
-          name="dateRange"
-          class="px-2 py-1.5 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
-        >
-          <option value="1" selected>In the last 24 hours</option>
-          <option value="3">In the last 3 days</option>
-          <option value="7">In the last 7 days</option>
-          <option value="14">In the last 2 weeks</option>
-          <option value="30">In the last month</option>
-        </select>
-      </div>
+      <FormTextInput
+        name="keywords"
+        placeholder="Software Developer"
+        label="Keywords"
+        required={true}
+      />
+      <FormTextInput
+        name="where"
+        placeholder="All New Zealand"
+        label="Location"
+      />
 
-      <div class="grid">
-        <label>
-          Salary from
-        </label>
-        <input
-          className="px-2 py-1 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
-          type="number"
-          name="salaryMin"
-          placeholder="any"
-        />
-      </div>
+      <FormSelectInput
+        name="dateRange"
+        label="Date listed"
+        options={[
+          { value: 1, label: "24 hours" },
+          { value: 3, label: "3 days" },
+          { value: 7, label: "7 days" },
+          { value: 14, label: "2 weeks" },
+          { value: 30, label: "month" },
+        ]}
+      />
 
-      <div class="grid">
-        <label>
-          Salary to
-        </label>
-        <input
-          className="px-2 py-1 border-black border-2 rounded bg-white hover:bg-gray-200 transition-colors text-[#E70279]"
-          type="number"
-          name="salaryMax"
-          placeholder="any"
-        />
-      </div>
+      <FormTextInput
+        type="number"
+        name="salaryMin"
+        placeholder="any"
+        label="Salary from"
+      />
+      <FormTextInput
+        type="number"
+        name="salaryMax"
+        placeholder="any"
+        label="Salary to"
+      />
+
       <div class="mt-3 grid">
         <Button>Search</Button>
       </div>
