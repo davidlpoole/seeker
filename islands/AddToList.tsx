@@ -3,6 +3,7 @@ import { Button } from "../components/Button.tsx";
 import { Search } from "../types/Search.ts";
 import FormTextInput from "../components/FormTextInput.tsx";
 import FormSelectInput from "../components/FormSelectInput.tsx";
+import FormSalaryInput from "../components/FormSalaryInput.tsx";
 
 interface Props {
   addTerm: (newSearch: Search) => void;
@@ -33,7 +34,7 @@ export default function AddToList(props: Props) {
       />
       <FormTextInput
         name="where"
-        placeholder="All New Zealand"
+        placeholder="New Zealand"
         label="Location"
       />
 
@@ -49,18 +50,7 @@ export default function AddToList(props: Props) {
         ]}
       />
 
-      <FormTextInput
-        type="number"
-        name="salaryMin"
-        placeholder="any"
-        label="Salary from"
-      />
-      <FormTextInput
-        type="number"
-        name="salaryMax"
-        placeholder="any"
-        label="Salary to"
-      />
+      <FormSalaryInput />
 
       <div class="mt-3 grid">
         <Button>Search</Button>
