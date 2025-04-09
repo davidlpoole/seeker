@@ -1,8 +1,8 @@
 import { Handlers } from "$fresh/server.ts";
-import scrape from "../../../../shared/scrape.ts";
+import scrape from "../../../shared/scrape.ts";
 
 export const handler: Handlers = {
-  async GET(_req, ctx) {
+  async GET(_req) {
     const url = new URL(_req.url);
     const keywords = url.searchParams.get("keywords") ||
       "Software Developer";
