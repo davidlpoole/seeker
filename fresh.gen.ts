@@ -8,10 +8,12 @@ import * as $api_v1_scrape_searchTerm_location_index from "./routes/api/v1/scrap
 import * as $api_v1_scrape_searchTerm_index from "./routes/api/v1/scrape/[searchTerm]/index.tsx";
 import * as $api_v2_jobDetails from "./routes/api/v2/jobDetails.tsx";
 import * as $api_v2_scrape from "./routes/api/v2/scrape.tsx";
+import * as $cover_index from "./routes/cover/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $AddToList from "./islands/AddToList.tsx";
 import * as $App from "./islands/App.tsx";
 import * as $Count from "./islands/Count.tsx";
+import * as $Cover from "./islands/Cover.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -24,12 +26,14 @@ const manifest = {
       $api_v1_scrape_searchTerm_index,
     "./routes/api/v2/jobDetails.tsx": $api_v2_jobDetails,
     "./routes/api/v2/scrape.tsx": $api_v2_scrape,
+    "./routes/cover/index.tsx": $cover_index,
     "./routes/index.tsx": $index,
   },
   islands: {
     "./islands/AddToList.tsx": $AddToList,
     "./islands/App.tsx": $App,
     "./islands/Count.tsx": $Count,
+    "./islands/Cover.tsx": $Cover,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

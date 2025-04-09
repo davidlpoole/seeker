@@ -48,7 +48,7 @@ export default function App() {
         z-30 w-full overflow-y-scroll p-5
         sm:h-full sm:overflow-auto sm:w-fit
         ">
-          <h1 class="text-4xl font-bold pb-4 sticky top-0">The Seeker</h1>
+          <h1 class="text-4xl font-bold pb-4 sticky top-0">Seeker</h1>
           <AddToList addTerm={addTerm} />
         </div>
 
