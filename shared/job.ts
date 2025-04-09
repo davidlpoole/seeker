@@ -16,9 +16,16 @@ export default async function job(
   const advertiserName = document?.querySelector(
     '[data-automation="advertiser-name"]',
   )?.textContent;
-  const jobDescription = document?.querySelector(
+  const jobDescriptionElement = document?.querySelector(
     '[data-automation="jobAdDetails"]',
-  )?.textContent;
+  )?.innerHTML;
+
+  let jobDescription = "";
+  if (jobDescriptionElement) {
+    jobDescription = jobDescriptionElement
+      .replace(/<[^>]*>/g, " ") // Strips HTML tags
+      .replace(/&nbsp;/g, " "); // Replaces non-breaking spaces with regular spaces
+  }
 
   return [jobTitle, advertiserName, jobDescription];
 }
