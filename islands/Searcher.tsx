@@ -1,8 +1,45 @@
+import { useEffect, useState } from "preact/hooks";
+
+import AddToList from "./AddToList.tsx";
+import { Search } from "../types/Search.ts";
 import { Button } from "../components/Button.tsx";
 import Footer from "../components/Footer.tsx";
 import Count from "./Count.tsx";
 
-export default function App() {
+export default function Searcher() {
+  const [searchList, setSearchList] = useState([] as Search[]);
+  const LOCAL_STORAGE_KEY = "seekerListV4";
+
+  useEffect(() => {
+    const getSeekerList = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (getSeekerList) {
+      setSearchList(JSON.parse(getSeekerList));
+    }
+  }, []);
+
+  function addTerm(newSearch: Search) {
+    const newList = [...searchList, newSearch];
+    setSearchList(newList);
+    localStorage.setItem(
+      LOCAL_STORAGE_KEY,
+      JSON.stringify(newList),
+    );
+  }
+
+  function removeFromList(id: Search["id"]) {
+    const newList = searchList.filter((search) => search.id !== id);
+    setSearchList(newList);
+    localStorage.setItem(
+      LOCAL_STORAGE_KEY,
+      JSON.stringify(newList),
+    );
+  }
+
+  function clearList() {
+    setSearchList([]);
+    localStorage.clear();
+  }
+
   return (
     <div class="">
       <div class="sm:flex sm:flex-row h-screen">
@@ -12,6 +49,7 @@ export default function App() {
         sm:h-full sm:overflow-auto sm:w-fit
         ">
           <h1 class="text-4xl font-bold pb-4 sticky top-0">Seeker</h1>
+          <AddToList addTerm={addTerm} />
         </div>
 
         <div class="flex flex-row justify-center w-full text-center">
