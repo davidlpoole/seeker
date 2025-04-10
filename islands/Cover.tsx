@@ -4,7 +4,7 @@ import CoverInput from "./CoverInput.tsx";
 import { Search } from "../types/Search.ts";
 import { Button } from "../components/Button.tsx";
 import Footer from "../components/Footer.tsx";
-import Count from "./Count.tsx";
+import JobDetails from "./JobDetails.tsx";
 
 export default function Searcher() {
   const [searchList, setSearchList] = useState([] as Search[]);
@@ -68,20 +68,11 @@ export default function Searcher() {
               <div class="pb-2">
                 {searchList?.length > 0 && searchList.map((s) => {
                   return (
-                    <div
+                    <JobDetails
                       key={s.id}
-                      class="flex flex-row items-center justify-between"
-                    >
-                      <p>{s.jobId}</p>
-                      <div class="flex flex-row gap-2">
-                        <Button
-                          onClick={() => removeFromList(s.id)}
-                          class="bg-red-500 hover:bg-red-700"
-                        >
-                          Remove
-                        </Button>
-                      </div>
-                    </div>
+                      searchTerm={s}
+                      removeItem={removeFromList}
+                    />
                   );
                 })}
               </div>

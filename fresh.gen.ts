@@ -6,7 +6,7 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_v1_scrape_searchTerm_location_index from "./routes/api/v1/scrape/[searchTerm]/[location]/index.tsx";
 import * as $api_v1_scrape_searchTerm_index from "./routes/api/v1/scrape/[searchTerm]/index.tsx";
-import * as $api_v2_jobDetails from "./routes/api/v2/jobDetails.tsx";
+import * as $api_v2_jobdetails from "./routes/api/v2/jobdetails.tsx";
 import * as $api_v2_scrape from "./routes/api/v2/scrape.tsx";
 import * as $cover_index from "./routes/cover/index.tsx";
 import * as $index from "./routes/index.tsx";
@@ -16,6 +16,7 @@ import * as $App from "./islands/App.tsx";
 import * as $Count from "./islands/Count.tsx";
 import * as $Cover from "./islands/Cover.tsx";
 import * as $CoverInput from "./islands/CoverInput.tsx";
+import * as $JobDetails from "./islands/JobDetails.tsx";
 import * as $Searcher from "./islands/Searcher.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -27,7 +28,7 @@ const manifest = {
       $api_v1_scrape_searchTerm_location_index,
     "./routes/api/v1/scrape/[searchTerm]/index.tsx":
       $api_v1_scrape_searchTerm_index,
-    "./routes/api/v2/jobDetails.tsx": $api_v2_jobDetails,
+    "./routes/api/v2/jobdetails.tsx": $api_v2_jobdetails,
     "./routes/api/v2/scrape.tsx": $api_v2_scrape,
     "./routes/cover/index.tsx": $cover_index,
     "./routes/index.tsx": $index,
@@ -39,6 +40,7 @@ const manifest = {
     "./islands/Count.tsx": $Count,
     "./islands/Cover.tsx": $Cover,
     "./islands/CoverInput.tsx": $CoverInput,
+    "./islands/JobDetails.tsx": $JobDetails,
     "./islands/Searcher.tsx": $Searcher,
   },
   baseUrl: import.meta.url,
