@@ -15,6 +15,7 @@ import * as $AddToList from "./islands/AddToList.tsx";
 import * as $App from "./islands/App.tsx";
 import * as $Count from "./islands/Count.tsx";
 import * as $Cover from "./islands/Cover.tsx";
+import * as $CoverInput from "./islands/CoverInput.tsx";
 import * as $Searcher from "./islands/Searcher.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -37,6 +38,7 @@ const manifest = {
     "./islands/App.tsx": $App,
     "./islands/Count.tsx": $Count,
     "./islands/Cover.tsx": $Cover,
+    "./islands/CoverInput.tsx": $CoverInput,
     "./islands/Searcher.tsx": $Searcher,
   },
   baseUrl: import.meta.url,
