@@ -1,44 +1,13 @@
-import { useEffect, useState } from "preact/hooks";
-
 import AddToList from "./AddToList.tsx";
-import { Search } from "../../types/Search.ts";
 import { Button } from "../../components/Button.tsx";
 import Footer from "../../components/Footer.tsx";
 import Count from "./Count.tsx";
+import { useSearchList } from "../hooks/useSearchList.tsx";
 
 export default function Searcher() {
-  const [searchList, setSearchList] = useState([] as Search[]);
-  const LOCAL_STORAGE_KEY = "seekerListV4";
-
-  useEffect(() => {
-    const getSeekerList = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (getSeekerList) {
-      setSearchList(JSON.parse(getSeekerList));
-    }
-  }, []);
-
-  function addTerm(newSearch: Search) {
-    const newList = [...searchList, newSearch];
-    setSearchList(newList);
-    localStorage.setItem(
-      LOCAL_STORAGE_KEY,
-      JSON.stringify(newList),
-    );
-  }
-
-  function removeFromList(id: Search["id"]) {
-    const newList = searchList.filter((search) => search.id !== id);
-    setSearchList(newList);
-    localStorage.setItem(
-      LOCAL_STORAGE_KEY,
-      JSON.stringify(newList),
-    );
-  }
-
-  function clearList() {
-    setSearchList([]);
-    localStorage.clear();
-  }
+  const { searchList, addTerm, removeFromList, clearList } = useSearchList(
+    "seekerListV4",
+  );
 
   return (
     <div class="">

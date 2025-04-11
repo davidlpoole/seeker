@@ -14,6 +14,7 @@ import * as $searcher from "./routes/searcher.tsx";
 import * as $cover_Cover from "./islands/cover/Cover.tsx";
 import * as $cover_CoverInput from "./islands/cover/CoverInput.tsx";
 import * as $cover_JobDetails from "./islands/cover/JobDetails.tsx";
+import * as $hooks_useSearchList from "./islands/hooks/useSearchList.tsx";
 import * as $searcher_AddToList from "./islands/searcher/AddToList.tsx";
 import * as $searcher_Count from "./islands/searcher/Count.tsx";
 import * as $searcher_Searcher from "./islands/searcher/Searcher.tsx";
@@ -37,6 +38,7 @@ const manifest = {
     "./islands/cover/Cover.tsx": $cover_Cover,
     "./islands/cover/CoverInput.tsx": $cover_CoverInput,
     "./islands/cover/JobDetails.tsx": $cover_JobDetails,
+    "./islands/hooks/useSearchList.tsx": $hooks_useSearchList,
     "./islands/searcher/AddToList.tsx": $searcher_AddToList,
     "./islands/searcher/Count.tsx": $searcher_Count,
     "./islands/searcher/Searcher.tsx": $searcher_Searcher,
