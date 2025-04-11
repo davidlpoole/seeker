@@ -11,6 +11,10 @@ export const handler: Handlers = {
     const dateRange = Number(url.searchParams.get("daterange")) || 1;
     const salaryRange = url.searchParams.get("salaryrange") || "0-";
 
+    console.log(
+      `${new Date().toISOString()} - Fetching ${url}`,
+    );
+
     const count = await scrape({ keywords, where, dateRange, salaryRange });
     return new Response(JSON.stringify({ count }));
   },

@@ -9,8 +9,10 @@ export const handler: Handlers = {
     if (!jobId) {
       return new Response("Job ID is required", { status: 400 });
     }
-    
+
     const [jobTitle, advertiserName, jobDescription] = await job({ jobId });
-    return new Response(JSON.stringify({ jobTitle, advertiserName, jobDescription }));
+    return new Response(
+      JSON.stringify({ jobTitle, advertiserName, jobDescription }),
+    );
   },
 };

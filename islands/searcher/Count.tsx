@@ -1,4 +1,4 @@
-import { useSignal } from "@preact/signals";
+import { useSignal, useSignalEffect } from "@preact/signals";
 import { Search } from "../../types/Search.ts";
 import { Button } from "../../components/Button.tsx";
 
@@ -30,7 +30,9 @@ export default function Count(props: CountProps) {
     }
   }
 
-  getCount();
+  useSignalEffect(() => {
+    getCount();
+  });
 
   const url = `https://www.seek.co.nz/jobs?${searchParams}`;
 

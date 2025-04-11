@@ -8,6 +8,7 @@ export default async function scrape(
   const safeWhere = encodeURIComponent(where);
   const url =
     `https://www.seek.co.nz/jobs?daterange=${dateRange}&keywords=${safeKeywords}&where=${safeWhere}&salaryrange=${salaryRange}&salarytype=annual`;
+
   const response = await fetch(url);
   const html = await response.text();
   const document = new DOMParser().parseFromString(html, "text/html");

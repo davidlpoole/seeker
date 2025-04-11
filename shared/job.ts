@@ -4,9 +4,12 @@ export default async function job(
   { jobId }: { jobId: string },
 ) {
   const safeJobId = encodeURIComponent(jobId);
-  const currentTime = new Date().toISOString();
-  console.log(`${currentTime} Fetching job details for jobId: ${safeJobId}`);
   const url = `https://www.seek.co.nz/job/${safeJobId}`;
+
+  console.log(
+    `${new Date().toISOString()} - Fetching ${url}`,
+  );
+
   const response = await fetch(url);
   const html = await response.text();
   const document = new DOMParser().parseFromString(html, "text/html");
