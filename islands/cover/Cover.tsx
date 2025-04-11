@@ -3,11 +3,13 @@ import { Button } from "../../components/Button.tsx";
 import Footer from "../../components/Footer.tsx";
 import JobDetails from "./List.tsx";
 import { useSearchList } from "../hooks/useSearchList.tsx";
+import { useSignal } from "@preact/signals";
 
 export default function Cover() {
   const { searchList, addTerm, removeFromList, clearList } = useSearchList(
     "seekerCoverV1",
   );
+  const cvText = useSignal<string>("");
 
   return (
     <div class="">
@@ -18,7 +20,7 @@ export default function Cover() {
         sm:h-full sm:overflow-auto sm:w-fit
         ">
           <h1 class="text-4xl font-bold pb-4 sticky top-0">Seeker</h1>
-          <Form addTerm={addTerm} />
+          <Form addTerm={addTerm} cvText={cvText} />
         </div>
 
         <div class="flex flex-row justify-center w-full text-center">
@@ -33,6 +35,7 @@ export default function Cover() {
                   <p class="mb-2">
                     Start by adding a job and your cv.
                   </p>
+                  <p>{cvText.value}</p>
                 </>
               )}
               <div class="pb-2">
