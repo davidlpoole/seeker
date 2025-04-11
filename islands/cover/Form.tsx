@@ -2,7 +2,9 @@ import { h } from "preact";
 import { Button } from "../../components/Button.tsx";
 import FormTextInput from "../../components/FormTextInput.tsx";
 
-export default function AddToList(props: Props) {
+export default function AddToList(props: {
+  addTerm: (searchObject: { id: string; jobId: string }) => void;
+}) {
   function handleAdd(e: h.JSX.TargetedEvent<HTMLFormElement>) {
     e.preventDefault();
     const id = crypto.randomUUID();

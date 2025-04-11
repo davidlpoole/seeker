@@ -1,9 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 
-import { Search } from "../../types/Search.ts";
-
 export function useSearchList(key: string) {
-  const [searchList, setSearchList] = useState([] as Search[]);
+  const [searchList, setSearchList] = useState([] as any[]);
   const LOCAL_STORAGE_KEY = key;
 
   useEffect(() => {
@@ -13,7 +11,7 @@ export function useSearchList(key: string) {
     }
   }, []);
 
-  function addTerm(newSearch: Search) {
+  function addTerm(newSearch) {
     const newList = [...searchList, newSearch];
     setSearchList(newList);
     localStorage.setItem(
@@ -22,7 +20,7 @@ export function useSearchList(key: string) {
     );
   }
 
-  function removeFromList(id: Search["id"]) {
+  function removeFromList(id: string) {
     const newList = searchList.filter((search) => search.id !== id);
     setSearchList(newList);
     localStorage.setItem(

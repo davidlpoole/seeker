@@ -1,7 +1,7 @@
-import CoverInput from "../cover/CoverInput.tsx";
+import Form from "./Form.tsx";
 import { Button } from "../../components/Button.tsx";
 import Footer from "../../components/Footer.tsx";
-import JobDetails from "./JobDetails.tsx";
+import JobDetails from "./List.tsx";
 import { useSearchList } from "../hooks/useSearchList.tsx";
 
 export default function Cover() {
@@ -18,7 +18,7 @@ export default function Cover() {
         sm:h-full sm:overflow-auto sm:w-fit
         ">
           <h1 class="text-4xl font-bold pb-4 sticky top-0">Seeker</h1>
-          <CoverInput addTerm={addTerm} />
+          <Form addTerm={addTerm} />
         </div>
 
         <div class="flex flex-row justify-center w-full text-center">

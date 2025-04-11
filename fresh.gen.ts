@@ -12,11 +12,11 @@ import * as $cover from "./routes/cover.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $searcher from "./routes/searcher.tsx";
 import * as $cover_Cover from "./islands/cover/Cover.tsx";
-import * as $cover_CoverInput from "./islands/cover/CoverInput.tsx";
-import * as $cover_JobDetails from "./islands/cover/JobDetails.tsx";
+import * as $cover_Form from "./islands/cover/Form.tsx";
+import * as $cover_List from "./islands/cover/List.tsx";
 import * as $hooks_useSearchList from "./islands/hooks/useSearchList.tsx";
-import * as $searcher_AddToList from "./islands/searcher/AddToList.tsx";
 import * as $searcher_Count from "./islands/searcher/Count.tsx";
+import * as $searcher_Form from "./islands/searcher/Form.tsx";
 import * as $searcher_Searcher from "./islands/searcher/Searcher.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -36,11 +36,11 @@ const manifest = {
   },
   islands: {
     "./islands/cover/Cover.tsx": $cover_Cover,
-    "./islands/cover/CoverInput.tsx": $cover_CoverInput,
-    "./islands/cover/JobDetails.tsx": $cover_JobDetails,
+    "./islands/cover/Form.tsx": $cover_Form,
+    "./islands/cover/List.tsx": $cover_List,
     "./islands/hooks/useSearchList.tsx": $hooks_useSearchList,
-    "./islands/searcher/AddToList.tsx": $searcher_AddToList,
     "./islands/searcher/Count.tsx": $searcher_Count,
+    "./islands/searcher/Form.tsx": $searcher_Form,
     "./islands/searcher/Searcher.tsx": $searcher_Searcher,
   },
   baseUrl: import.meta.url,

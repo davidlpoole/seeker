@@ -1,4 +1,4 @@
-import AddToList from "./AddToList.tsx";
+import AddToList from "./Form.tsx";
 import { Button } from "../../components/Button.tsx";
 import Footer from "../../components/Footer.tsx";
 import Count from "./Count.tsx";
