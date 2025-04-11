@@ -37,7 +37,9 @@ export default function JobDetails(props) {
           href={url}
           target="_blank"
         >
-          {safeJobId} - {jobDetails.value.jobTitle}
+          {jobDetails.value.jobTitle === ""
+            ? `Loading job details...`
+            : `${jobDetails.value.jobTitle} @ ${jobDetails.value.advertiserName}`}
         </a>
       </div>
       <div class="flex gap-2">
