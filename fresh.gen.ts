@@ -18,7 +18,7 @@ import * as $hooks_useSearchList from "./islands/hooks/useSearchList.tsx";
 import * as $searcher_Count from "./islands/searcher/Count.tsx";
 import * as $searcher_Form from "./islands/searcher/Form.tsx";
 import * as $searcher_Searcher from "./islands/searcher/Searcher.tsx";
-import { type Manifest } from "$fresh/server.ts";
+import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
