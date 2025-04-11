@@ -1,14 +1,14 @@
 import { useEffect, useState } from "preact/hooks";
 
-import AddToList from "./AddToList.tsx";
-import { Search } from "../types/Search.ts";
-import { Button } from "../components/Button.tsx";
-import Footer from "../components/Footer.tsx";
-import Count from "./Count.tsx";
+import CoverInput from "../cover/CoverInput.tsx";
+import { Search } from "../../types/Search.ts";
+import { Button } from "../../components/Button.tsx";
+import Footer from "../../components/Footer.tsx";
+import JobDetails from "./JobDetails.tsx";
 
-export default function Searcher() {
+export default function Cover() {
   const [searchList, setSearchList] = useState([] as Search[]);
-  const LOCAL_STORAGE_KEY = "seekerListV4";
+  const LOCAL_STORAGE_KEY = "seekerCoverV1";
 
   useEffect(() => {
     const getSeekerList = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -49,7 +49,7 @@ export default function Searcher() {
         sm:h-full sm:overflow-auto sm:w-fit
         ">
           <h1 class="text-4xl font-bold pb-4 sticky top-0">Seeker</h1>
-          <AddToList addTerm={addTerm} />
+          <CoverInput addTerm={addTerm} />
         </div>
 
         <div class="flex flex-row justify-center w-full text-center">
@@ -58,21 +58,24 @@ export default function Searcher() {
               {searchList.length === 0 && (
                 <>
                   <p class="mb-2 font-semibold">
-                    Compare jobs on Seek by keywords, location, and date listed.
+                    Generate a cover letter based on a job description and your
+                    CV.
                   </p>
                   <p class="mb-2">
-                    Start by adding a search to your list.
+                    Start by adding a job and your cv.
                   </p>
                 </>
               )}
               <div class="pb-2">
-                {searchList.map((s) => (
-                  <Count
-                    key={s.id}
-                    searchTerm={s}
-                    removeItem={removeFromList}
-                  />
-                ))}
+                {searchList?.length > 0 && searchList.map((s) => {
+                  return (
+                    <JobDetails
+                      key={s.id}
+                      searchTerm={s}
+                      removeItem={removeFromList}
+                    />
+                  );
+                })}
               </div>
               {searchList.length > 1 && (
                 <Button onClick={clearList}>Clear list</Button>

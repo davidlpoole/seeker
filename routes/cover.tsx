@@ -1,4 +1,4 @@
-import Cover from "../../islands/Cover.tsx";
+import Cover from "../islands/cover/Cover.tsx";
 
 export default function Home() {
   return (

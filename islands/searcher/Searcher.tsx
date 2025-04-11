@@ -1,14 +1,14 @@
 import { useEffect, useState } from "preact/hooks";
 
-import CoverInput from "./CoverInput.tsx";
-import { Search } from "../types/Search.ts";
-import { Button } from "../components/Button.tsx";
-import Footer from "../components/Footer.tsx";
-import JobDetails from "./JobDetails.tsx";
+import AddToList from "./AddToList.tsx";
+import { Search } from "../../types/Search.ts";
+import { Button } from "../../components/Button.tsx";
+import Footer from "../../components/Footer.tsx";
+import Count from "./Count.tsx";
 
 export default function Searcher() {
   const [searchList, setSearchList] = useState([] as Search[]);
-  const LOCAL_STORAGE_KEY = "seekerCoverV1";
+  const LOCAL_STORAGE_KEY = "seekerListV4";
 
   useEffect(() => {
     const getSeekerList = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -49,7 +49,7 @@ export default function Searcher() {
         sm:h-full sm:overflow-auto sm:w-fit
         ">
           <h1 class="text-4xl font-bold pb-4 sticky top-0">Seeker</h1>
-          <CoverInput addTerm={addTerm} />
+          <AddToList addTerm={addTerm} />
         </div>
 
         <div class="flex flex-row justify-center w-full text-center">
@@ -66,15 +66,13 @@ export default function Searcher() {
                 </>
               )}
               <div class="pb-2">
-                {searchList?.length > 0 && searchList.map((s) => {
-                  return (
-                    <JobDetails
-                      key={s.id}
-                      searchTerm={s}
-                      removeItem={removeFromList}
-                    />
-                  );
-                })}
+                {searchList.map((s) => (
+                  <Count
+                    key={s.id}
+                    searchTerm={s}
+                    removeItem={removeFromList}
+                  />
+                ))}
               </div>
               {searchList.length > 1 && (
                 <Button onClick={clearList}>Clear list</Button>

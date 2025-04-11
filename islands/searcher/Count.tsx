@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
-import { Search } from "../types/Search.ts";
-import { Button } from "../components/Button.tsx";
+import { Search } from "../../types/Search.ts";
+import { Button } from "../../components/Button.tsx";
 
 interface CountProps {
   searchTerm: Search;

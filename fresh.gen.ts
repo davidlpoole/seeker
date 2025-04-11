@@ -8,16 +8,15 @@ import * as $api_v1_scrape_searchTerm_location_index from "./routes/api/v1/scrap
 import * as $api_v1_scrape_searchTerm_index from "./routes/api/v1/scrape/[searchTerm]/index.tsx";
 import * as $api_v2_jobdetails from "./routes/api/v2/jobdetails.tsx";
 import * as $api_v2_scrape from "./routes/api/v2/scrape.tsx";
-import * as $cover_index from "./routes/cover/index.tsx";
+import * as $cover from "./routes/cover.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $searcher_index from "./routes/searcher/index.tsx";
-import * as $AddToList from "./islands/AddToList.tsx";
-import * as $App from "./islands/App.tsx";
-import * as $Count from "./islands/Count.tsx";
-import * as $Cover from "./islands/Cover.tsx";
-import * as $CoverInput from "./islands/CoverInput.tsx";
-import * as $JobDetails from "./islands/JobDetails.tsx";
-import * as $Searcher from "./islands/Searcher.tsx";
+import * as $searcher from "./routes/searcher.tsx";
+import * as $cover_Cover from "./islands/cover/Cover.tsx";
+import * as $cover_CoverInput from "./islands/cover/CoverInput.tsx";
+import * as $cover_JobDetails from "./islands/cover/JobDetails.tsx";
+import * as $searcher_AddToList from "./islands/searcher/AddToList.tsx";
+import * as $searcher_Count from "./islands/searcher/Count.tsx";
+import * as $searcher_Searcher from "./islands/searcher/Searcher.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -30,18 +29,17 @@ const manifest = {
       $api_v1_scrape_searchTerm_index,
     "./routes/api/v2/jobdetails.tsx": $api_v2_jobdetails,
     "./routes/api/v2/scrape.tsx": $api_v2_scrape,
-    "./routes/cover/index.tsx": $cover_index,
+    "./routes/cover.tsx": $cover,
     "./routes/index.tsx": $index,
-    "./routes/searcher/index.tsx": $searcher_index,
+    "./routes/searcher.tsx": $searcher,
   },
   islands: {
-    "./islands/AddToList.tsx": $AddToList,
-    "./islands/App.tsx": $App,
-    "./islands/Count.tsx": $Count,
-    "./islands/Cover.tsx": $Cover,
-    "./islands/CoverInput.tsx": $CoverInput,
-    "./islands/JobDetails.tsx": $JobDetails,
-    "./islands/Searcher.tsx": $Searcher,
+    "./islands/cover/Cover.tsx": $cover_Cover,
+    "./islands/cover/CoverInput.tsx": $cover_CoverInput,
+    "./islands/cover/JobDetails.tsx": $cover_JobDetails,
+    "./islands/searcher/AddToList.tsx": $searcher_AddToList,
+    "./islands/searcher/Count.tsx": $searcher_Count,
+    "./islands/searcher/Searcher.tsx": $searcher_Searcher,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

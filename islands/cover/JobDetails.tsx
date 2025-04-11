@@ -1,5 +1,5 @@
 import { useSignal } from "@preact/signals";
-import { Button } from "../components/Button.tsx";
+import { Button } from "../../components/Button.tsx";
 
 export default function JobDetails(props) {
   const safeJobId = encodeURIComponent(props.searchTerm.jobId);

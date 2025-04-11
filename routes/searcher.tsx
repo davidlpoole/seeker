@@ -1,4 +1,4 @@
-import Searcher from "../../islands/Searcher.tsx";
+import Searcher from "../islands/searcher/Searcher.tsx";
 
 export default function Home() {
   return (

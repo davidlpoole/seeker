@@ -1,9 +1,9 @@
 import { h } from "preact";
-import { Button } from "../components/Button.tsx";
-import { Search } from "../types/Search.ts";
-import FormTextInput from "../components/FormTextInput.tsx";
-import FormSelectInput from "../components/FormSelectInput.tsx";
-import FormSalaryInput from "../components/FormSalaryInput.tsx";
+import { Button } from "../../components/Button.tsx";
+import { Search } from "../../types/Search.ts";
+import FormTextInput from "../../components/FormTextInput.tsx";
+import FormSelectInput from "../../components/FormSelectInput.tsx";
+import FormSalaryInput from "../../components/FormSalaryInput.tsx";
 
 interface Props {
   addTerm: (newSearch: Search) => void;

@@ -1,6 +1,6 @@
 import { h } from "preact";
-import { Button } from "../components/Button.tsx";
-import FormTextInput from "../components/FormTextInput.tsx";
+import { Button } from "../../components/Button.tsx";
+import FormTextInput from "../../components/FormTextInput.tsx";
 
 export default function AddToList(props: Props) {
   function handleAdd(e: h.JSX.TargetedEvent<HTMLFormElement>) {
