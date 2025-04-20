@@ -45,6 +45,14 @@ export default function AddToList(props: {
     const id = crypto.randomUUID();
     const jobId = (e.target as HTMLFormElement)?.jobId.value;
     const searchObject = { id, jobId, cvText: props.cvText.value }; // Pass the signal's value
+    if (!jobId) {
+      alert("Please enter a job ID");
+      return;
+    }
+    if (!props.cvText.value) {
+      alert("Please enter your CV");
+      return;
+    }
     props.addTerm(searchObject);
   }
 
