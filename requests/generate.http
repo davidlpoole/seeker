@@ -1,0 +1,7 @@
+POST http://localhost:8000/api/v2/generate
+Content-Type: application/json
+
+{
+    "jobDescription": "Sample job description",
+    "cvText": "Sample CV"
+}
