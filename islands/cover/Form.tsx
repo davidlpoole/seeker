@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
 import FormTextInput from "../../components/FormTextInput.tsx";
 
@@ -21,6 +21,25 @@ export default function AddToList(props: {
     setIsModalOpen(false); // Close the modal
   }
 
+  function handleEscapeKey(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      setIsModalOpen(false); // Close the modal when Escape is pressed
+    }
+  }
+
+  useEffect(() => {
+    if (isModalOpen) {
+      self.addEventListener("keydown", handleEscapeKey);
+    } else {
+      self.removeEventListener("keydown", handleEscapeKey);
+    }
+
+    // Cleanup the event listener when the component unmounts or modal closes
+    return () => {
+      self.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [isModalOpen]);
+
   function handleAdd(e: h.JSX.TargetedEvent<HTMLFormElement>) {
     e.preventDefault();
     const id = crypto.randomUUID();
@@ -39,7 +58,7 @@ export default function AddToList(props: {
 
         <div>Your CV</div>
         <Button type="button" onClick={handleOpenModal}>
-          Your CV...
+          Edit your CV...
         </Button>
 
         <div class="mt-3 grid">
