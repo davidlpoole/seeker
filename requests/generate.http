@@ -1,7 +1,8 @@
+
 POST http://localhost:8000/api/v2/generate
 Content-Type: application/json
 
 {
-    "jobDescription": "Sample job description",
-    "cvText": "Sample CV"
+    "jobDescription": "business analyst",
+    "cvText": "business intelligence analyst, javascript bootcamp facilitator, database administrator, data analyst, data engineer, data scientist, data architect, data visualization specialist, machine learning engineer, python developer, software engineer"
 }

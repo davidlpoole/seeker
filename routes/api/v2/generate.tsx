@@ -1,38 +1,43 @@
 import { Handlers } from "$fresh/server.ts";
+import Groq from "groq-sdk";
 
-import "jsr:@std/dotenv/load";
-
-console.log(Deno.env.get("GREETING")); // "Hello, world."
+const groq = new Groq({ apiKey: Deno.env.get("GROQ_API_KEY") });
 
 async function generateCoverLetter(
   jobDescription: string,
   cvText: string,
 ): Promise<string> {
-  const apiKey = Deno.env.get("GROQ_API_KEY");
-
-  if (!apiKey) {
+  if (!groq.apiKey) {
     throw new Error("Missing Groq API key in environment variables");
   }
 
-  const response = await fetch("https://api.groq.com/v1/generate", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      prompt:
-        `Write a professional cover letter based on the following job description and CV:\n\nJob Description:\n${jobDescription}\n\nCV:\n${cvText}\n\nCover Letter:`,
-      max_tokens: 500,
-    }),
+  const prompt = `
+          Instructions:
+          Write a professional cover letter based on the following job description and CV,
+          only provide the body of the letter (no salutation or closing) without any additional text.
+
+          Job Description:
+          ${jobDescription}
+
+          CV:
+          ${cvText}
+
+          Cover Letter:
+        `;
+
+  const chatCompletion = await groq.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+    model: "llama3-8b-8192",
   });
 
-  if (!response.ok) {
-    throw new Error(`Groq API error: ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  return data.result?.text.trim() || "Failed to generate cover letter.";
+  // Extract and return the generated cover letter
+  return chatCompletion.choices[0]?.message?.content?.trim() ||
+    "Failed to generate cover letter.";
 }
 
 export const handler: Handlers = {
@@ -55,7 +60,7 @@ export const handler: Handlers = {
       );
     } catch (error) {
       return new Response(
-        JSON.stringify({ error: error.message }),
+        JSON.stringify({ error }),
         { status: 500 },
       );
     }
