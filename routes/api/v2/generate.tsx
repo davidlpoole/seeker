@@ -1,11 +1,38 @@
 import { Handlers } from "$fresh/server.ts";
 
-function generateCoverLetter(jobDescription: string, cvText: string): string {
-  // Placeholder function to simulate cover letter generation
-  return `Dear Hiring Manager,
-Based on the job description: "${jobDescription}" and my CV: "${cvText}", I believe I am a strong candidate for this position.
-Sincerely,
-[Your Name]`;
+import "jsr:@std/dotenv/load";
+
+console.log(Deno.env.get("GREETING")); // "Hello, world."
+
+async function generateCoverLetter(
+  jobDescription: string,
+  cvText: string,
+): Promise<string> {
+  const apiKey = Deno.env.get("GROQ_API_KEY");
+
+  if (!apiKey) {
+    throw new Error("Missing Groq API key in environment variables");
+  }
+
+  const response = await fetch("https://api.groq.com/v1/generate", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      prompt:
+        `Write a professional cover letter based on the following job description and CV:\n\nJob Description:\n${jobDescription}\n\nCV:\n${cvText}\n\nCover Letter:`,
+      max_tokens: 500,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Groq API error: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.result?.text.trim() || "Failed to generate cover letter.";
 }
 
 export const handler: Handlers = {
@@ -20,7 +47,7 @@ export const handler: Handlers = {
         );
       }
 
-      const coverLetter = generateCoverLetter(jobDescription, cvText);
+      const coverLetter = await generateCoverLetter(jobDescription, cvText);
 
       return new Response(
         JSON.stringify({ result: coverLetter }),
@@ -28,8 +55,8 @@ export const handler: Handlers = {
       );
     } catch (error) {
       return new Response(
-        JSON.stringify({ error: "Invalid request payload" }),
-        { status: 400 },
+        JSON.stringify({ error: error.message }),
+        { status: 500 },
       );
     }
   },
