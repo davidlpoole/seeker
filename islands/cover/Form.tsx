@@ -2,15 +2,17 @@ import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
 import FormTextInput from "../../components/FormTextInput.tsx";
+import { useSearchList } from "../hooks/useSearchList.tsx";
+import JobDetails from "./List.tsx";
 
 export default function AddToList(props: {
-  addTerm: (
-    searchObject: { id: string; jobId: string; cvText?: string },
-  ) => void;
   cvText: { value: string }; // Include cvText in props
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const [tempCVText, setTempCVText] = useState(""); // Temporary CV text for the modal
+  const { searchList, addTerm, removeFromList, clearList } = useSearchList(
+    "seekerCoverV1",
+  );
 
   function handleOpenModal() {
     setIsModalOpen(true); // Open the modal
@@ -53,7 +55,7 @@ export default function AddToList(props: {
       alert("Please enter your CV");
       return;
     }
-    props.addTerm(searchObject);
+    addTerm(searchObject);
   }
 
   return (
@@ -64,10 +66,32 @@ export default function AddToList(props: {
           label="Job ID"
         />
 
+        {searchList?.length > 0 && (
+          <div class="pb-2">
+            {searchList.map((s) => {
+              return (
+                <JobDetails
+                  key={s.id}
+                  searchTerm={s}
+                  removeItem={removeFromList}
+                />
+              );
+            })}
+          </div>
+        )}
+
         <div>Your CV</div>
         <Button type="button" onClick={handleOpenModal}>
           Edit your CV...
         </Button>
+
+        {props.cvText.value && (
+          <div class="text-sm">
+            {props.cvText.value.length > 50
+              ? `${props.cvText.value.slice(0, 50)}...`
+              : props.cvText.value}
+          </div>
+        )}
 
         <div class="mt-3 grid">
           <Button type="submit">Generate</Button>

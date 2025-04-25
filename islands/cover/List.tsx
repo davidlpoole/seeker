@@ -39,7 +39,7 @@ export default function JobDetails(props) {
         >
           {jobDetails.value.jobTitle === ""
             ? `Loading job details...`
-            : `${jobDetails.value.jobTitle} @ ${jobDetails.value.advertiserName}`}
+            : `${jobDetails.value.jobTitle}`}
         </a>
       </div>
       <div class="flex gap-2">

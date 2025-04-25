@@ -1,14 +1,9 @@
 import Form from "./Form.tsx";
-import { Button } from "../../components/Button.tsx";
+// import { Button } from "../../components/Button.tsx";
 import Footer from "../../components/Footer.tsx";
-import JobDetails from "./List.tsx";
-import { useSearchList } from "../hooks/useSearchList.tsx";
 import { useSignal } from "@preact/signals";
 
 export default function Cover() {
-  const { searchList, addTerm, removeFromList, clearList } = useSearchList(
-    "seekerCoverV1",
-  );
   const cvText = useSignal<string>("");
 
   return (
@@ -20,25 +15,24 @@ export default function Cover() {
         sm:h-full sm:overflow-auto sm:w-fit
         ">
           <h1 class="text-4xl font-bold pb-4 sticky top-0">Seeker</h1>
-          <Form addTerm={addTerm} cvText={cvText} />
+          <Form cvText={cvText} />
         </div>
 
         <div class="flex flex-row justify-center w-full text-center">
           <div class="flex flex-col justify-between w-fit p-5">
             <div>
-              {searchList.length === 0 && (
-                <>
-                  <p class="mb-2 font-semibold">
-                    Generate a cover letter based on a job description and your
-                    CV.
-                  </p>
-                  <p class="mb-2">
-                    Start by adding a job and your cv.
-                  </p>
-                  <p>{cvText.value}</p>
-                </>
-              )}
-              <div class="pb-2">
+              <div>
+                <p class="mb-2 font-semibold">
+                  Generate a cover letter based on a job description and your
+                  CV.
+                </p>
+                <p class="mb-2">
+                  Start by adding a job and your cv.
+                </p>
+                {/* <p>{cvText.value}</p> */}
+              </div>
+              {
+                /* <div class="pb-2">
                 {searchList?.length > 0 && searchList.map((s) => {
                   return (
                     <JobDetails
@@ -48,10 +42,13 @@ export default function Cover() {
                     />
                   );
                 })}
-              </div>
-              {searchList.length > 1 && (
+              </div> */
+              }
+              {
+                /* {searchList.length > 1 && (
                 <Button onClick={clearList}>Clear list</Button>
-              )}
+              )} */
+              }
             </div>
             <Footer />
           </div>
