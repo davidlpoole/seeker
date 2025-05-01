@@ -7,7 +7,7 @@ import * as $_app from "./routes/_app.tsx";
 import * as $api_v1_scrape_searchTerm_location_index from "./routes/api/v1/scrape/[searchTerm]/[location]/index.tsx";
 import * as $api_v1_scrape_searchTerm_index from "./routes/api/v1/scrape/[searchTerm]/index.tsx";
 import * as $api_v2_generate from "./routes/api/v2/generate.tsx";
-import * as $api_v2_jobdetails from "./routes/api/v2/jobdetails.tsx";
+import * as $api_v2_jobDetails from "./routes/api/v2/jobDetails.tsx";
 import * as $api_v2_scrape from "./routes/api/v2/scrape.tsx";
 import * as $cover from "./routes/cover.tsx";
 import * as $index from "./routes/index.tsx";
@@ -30,7 +30,7 @@ const manifest = {
     "./routes/api/v1/scrape/[searchTerm]/index.tsx":
       $api_v1_scrape_searchTerm_index,
     "./routes/api/v2/generate.tsx": $api_v2_generate,
-    "./routes/api/v2/jobdetails.tsx": $api_v2_jobdetails,
+    "./routes/api/v2/jobDetails.tsx": $api_v2_jobDetails,
     "./routes/api/v2/scrape.tsx": $api_v2_scrape,
     "./routes/cover.tsx": $cover,
     "./routes/index.tsx": $index,
